@@ -8,13 +8,15 @@ using System.Threading.Tasks;
 
 namespace Banking.Infrastructure.Common
 {
-    public class BaseEFRepository<TEntity>: IBaseRepository<TEntity>, IDisposable
+    public class BaseEFRepository<TEntity, TKey>: IBaseRepository<TEntity, TKey>, IDisposable
         where TEntity : class
     {
         protected readonly DbContext Context;
+        //private bool shareContext = false;
         public BaseEFRepository(DbContext context)
         {
             Context = context;
+            //shareContext = true;
         }
    
         public void persist(TEntity entity)
@@ -22,67 +24,46 @@ namespace Banking.Infrastructure.Common
 
         }    
 
-        public void save(TEntity entity)
+        public void save()
+        {
+            Context.SaveChanges();
+        }
+
+        public void add(TEntity entity)
         {
             Context.Set<TEntity>().Add(entity);
+            //if (!shareContext)
+            save();
         }
 
         public void update(TEntity entity)
         {
+            Context.Set<TEntity>().Attach(entity);
             Context.Entry(entity).State = EntityState.Modified;
+            save();
         }
 
-        public void merge(TEntity entity)
+        public void delete(TEntity entity)
         {
+            //if (entity == null) throw new ArgumentNullException("entity");
+            Context.Set<TEntity>().Attach(entity);
+            Context.Set<TEntity>().Remove(entity);
+            save();
+        }
 
+        public TEntity getById(TKey id)
+        {
+            return Context.Set<TEntity>().Find(id);
         }
 
         public void saveOrUpdate(TEntity entity)
         {
             
         }
-        /*
-        protected SessionFactory sessionFactory;
-
-        @Autowired
-        public void setSessionFactory(final SessionFactory sessionFactory)
-        {
-            this.sessionFactory = sessionFactory;
-        }
-
-        protected Session getSession()
-        {
-            return sessionFactory.getCurrentSession();
-        }
-
-        public void persist(T entity)
-        {
-            getSession().persist(entity);
-        }
-
-        public void save(T entity)
-        {
-            getSession().save(entity);
-        }
-
-        public void update(T entity)
-        {
-            getSession().update(entity);
-        }
-
-        public void merge(T entity)
-        {
-            getSession().merge(entity);
-        }
-
-        public void saveOrUpdate(T entity)
-        {
-            getSession().saveOrUpdate(entity);
-        }
-        */
 
         public void Dispose()
         {
+            //if (shareContext && (Context != null))
             Context.Dispose();
         }
     }

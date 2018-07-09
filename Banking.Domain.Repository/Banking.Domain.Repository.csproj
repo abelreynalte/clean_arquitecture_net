@@ -49,6 +49,10 @@
       <Project>{a6eff12b-49c8-4002-86ff-ea0403f311e3}</Project>
       <Name>Banking.Domain.Entity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Banking.Infrastructure.Common\Banking.Infrastructure.Common.csproj">
+      <Project>{6f6562da-f7d1-427e-9437-978ae4dff332}</Project>
+      <Name>Banking.Infrastructure.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

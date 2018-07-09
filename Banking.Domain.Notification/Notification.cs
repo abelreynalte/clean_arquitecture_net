@@ -25,7 +25,7 @@ namespace Banking.Application.Notification
         public String errorMessage()
         {
             //return errors.stream().map(e => e.getMessage()).collect(Collectors.joining(", "));
-            return String.Join(", ", errors.Select(e => e.getMessage()).ToList());
+            return String.Join(",", errors.Select(e => e.getMessage()));
         }
          
         public bool hasErrors()

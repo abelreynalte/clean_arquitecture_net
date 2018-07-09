@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Banking.Infrastructure.EntityFramework
 {
-    public class BankAccountEFRepository : BaseEFRepository<BankAccount>, IBankAccountRepository
+    public class BankAccountEFRepository : BaseEFRepository<BankAccount, string>, IBankAccountRepository
     {
 
         public BankAccountEFRepository(BankingContext context): base(context)
@@ -23,7 +23,7 @@ namespace Banking.Infrastructure.EntityFramework
             //Criteria criteria = getSession().createCriteria(BankAccount.class);
             //criteria.add(Restrictions.eq("number", accountNumber));
             //return (BankAccount) criteria.uniqueResult();
-            return BankingContext.BankAccounts.FirstOrDefault(x => x.getNumber() == accountNumber);
+            return BankingContext.BankAccounts.FirstOrDefault(x => x.number == accountNumber);
         }
 
         public BankAccount findByNumberLocked(String accountNumber)
@@ -32,14 +32,17 @@ namespace Banking.Infrastructure.EntityFramework
             //criteria.add(Restrictions.eq("number", accountNumber));
             //criteria.setLockMode(LockMode.PESSIMISTIC_WRITE);
             //return (BankAccount) criteria.uniqueResult();
-            return BankingContext.BankAccounts.FirstOrDefault(x => x.getNumber() == accountNumber);
+
+            //var t = BankingContext.BankAccounts.ToList();
+            
+            return BankingContext.BankAccounts.FirstOrDefault(x => x.number == accountNumber);
         }
 
-        public void save(BankAccount bankAccount)
-        {
-            //super.save(bankAccount);
-            BankingContext.BankAccounts.Add(bankAccount);
-        }
+        //public void save(BankAccount bankAccount)
+        //{
+        //    //super.save(bankAccount);
+        //    BankingContext.BankAccounts.Add(bankAccount);                        
+        //}
 
         public BankingContext BankingContext
         {

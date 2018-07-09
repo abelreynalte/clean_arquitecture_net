@@ -5,50 +5,27 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace Banking.Api.Controllers
 {
     public class ResponseHandlerController : ApiController
     {
-        //// GET: api/Common
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
 
-        //// GET: api/Common/5
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
-
-        //// POST: api/Common
-        //public void Post([FromBody]string value)
-        //{
-        //}
-
-        //// PUT: api/Common/5
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
-
-        //// DELETE: api/Common/5
-        //public void Delete(int id)
-        //{
-        //}
         [HttpGet]
-        public IHttpActionResult getOkCommandResponse(String message)
+        public object getOkCommandResponse(String message)
         {
             ResponseDto responseDto = new ResponseDto();
             ResponseOkCommandDto responseOkCommandDto = new ResponseOkCommandDto();
-            responseOkCommandDto.setHttpStatus(Convert.ToInt32(HttpStatusCode.Created));
-            responseOkCommandDto.setMessage(message);
-            responseDto.setResponse(responseOkCommandDto);
-            return Json(responseDto.getResponse());
+            responseOkCommandDto.httpStatus = Convert.ToInt32(HttpStatusCode.Created);
+            responseOkCommandDto.message = message;
+            responseDto.response = responseOkCommandDto;
+            var val = responseDto.response;
+            return  responseDto.response;
         }
 
         [HttpGet]
-        public IHttpActionResult getAppCustomErrorResponse(String errorMessages)
+        public object getAppCustomErrorResponse(String errorMessages)
         {
             ResponseDto responseDto = new ResponseDto();
             String[] errors = errorMessages.Split(',');
@@ -58,21 +35,21 @@ namespace Banking.Api.Controllers
                 errorsDto.Add(new ErrorDto(error));
             }
             ResponseErrorDto responseErrorDto = new ResponseErrorDto(errorsDto);
-            responseErrorDto.setHttpStatus(Convert.ToInt32(HttpStatusCode.BadRequest));
-            responseDto.setResponse(responseErrorDto);
-            return Json(responseDto.getResponse());
+            responseErrorDto.httpStatus = Convert.ToInt32(HttpStatusCode.BadRequest);
+            responseDto.response = responseErrorDto;
+            return responseDto.response;
         }
 
         [HttpGet]
-        public IHttpActionResult getAppExceptionResponse()
+        public object getAppExceptionResponse()
         {
             ResponseDto responseDto = new ResponseDto();
             List<ErrorDto> errorsDto = new List<ErrorDto>();
             errorsDto.Add(new ErrorDto("Server error"));
             ResponseErrorDto responseErrorDto = new ResponseErrorDto(errorsDto);
-            responseErrorDto.setHttpStatus(Convert.ToInt32(HttpStatusCode.InternalServerError));
-            responseDto.setResponse(responseErrorDto);
-            return Json(responseDto.getResponse());
+            responseErrorDto.httpStatus = Convert.ToInt32(HttpStatusCode.InternalServerError);
+            responseDto.response = responseErrorDto;
+            return responseDto.response;
         }
     }
 }

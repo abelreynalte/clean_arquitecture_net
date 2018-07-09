@@ -1,4 +1,5 @@
-﻿using Banking.Application.Dto.Enumeration;
+﻿using Banking.Application.Dto;
+using Banking.Application.Dto.Enumeration;
 using Banking.Domain.Entity;
 using Banking.Domain.Repository;
 using Banking.Domain.Transactions.Service;
@@ -13,21 +14,21 @@ namespace Banking.Application.Service
 {
     public class TransactionApplicationService
     {
-        private IBankAccountRepository bankAccountRepository;
-        private TransferDomainService transferDomainService = new TransferDomainService();
+        private TransferDomainService transferDomainService = new TransferDomainService();        
 
-        public void performTransfer(Dto.RequestBankTransferDto requestBankTransferDto)
+        public void performTransfer(Dto.RequestBankTransferDto requestBankTransferDto, 
+            Func<string, BankAccount> delagatefindByNumberLocked, Action<BankAccount> delegateUpdate)
         {
             Notification.Notification notification = this.validation(requestBankTransferDto);
             if (notification.hasErrors())
             {
                 throw new ArgumentException(notification.errorMessage());
             }
-            BankAccount originAccount = this.bankAccountRepository.findByNumberLocked(requestBankTransferDto.getFromAccountNumber());
-            BankAccount destinationAccount = this.bankAccountRepository.findByNumberLocked(requestBankTransferDto.getToAccountNumber());
-            this.transferDomainService.performTransfer(originAccount, destinationAccount, requestBankTransferDto.getAmount());
-            this.bankAccountRepository.save(originAccount);
-            this.bankAccountRepository.save(destinationAccount);
+            BankAccount originAccount = delagatefindByNumberLocked(requestBankTransferDto.fromAccountNumber);
+            BankAccount destinationAccount = delagatefindByNumberLocked(requestBankTransferDto.toAccountNumber);
+            this.transferDomainService.performTransfer(originAccount, destinationAccount, requestBankTransferDto.amount);
+            delegateUpdate(originAccount);
+            delegateUpdate(destinationAccount);
         }
 
         private Notification.Notification validation(Dto.RequestBankTransferDto requestBankTransferDto)

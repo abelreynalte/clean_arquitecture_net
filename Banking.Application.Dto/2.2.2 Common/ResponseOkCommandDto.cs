@@ -8,27 +8,29 @@ namespace Banking.Application.Dto.Common
 {
     public class ResponseOkCommandDto
     {
-        private int httpStatus;
-        private String message;
+        //private int httpStatus;
+        //private String message;
+        public int httpStatus { get; set; }
+        public string message { get; set; }
 
-        public int getHttpStatus()
-        {
-            return httpStatus;
-        }
+        //public int getHttpStatus()
+        //{
+        //    return httpStatus;
+        //}
 
-        public void setHttpStatus(int httpStatus)
-        {
-            this.httpStatus = httpStatus;
-        }
+        //public void setHttpStatus(int httpStatus)
+        //{
+        //    this.httpStatus = httpStatus;
+        //}
 
-        public String getMessage()
-        {
-            return message;
-        }
+        //public String getMessage()
+        //{
+        //    return message;
+        //}
 
-        public void setMessage(String message)
-        {
-            this.message = message;
-        }
+        //public void setMessage(String message)
+        //{
+        //    this.message = message;
+        //}
     }
 }

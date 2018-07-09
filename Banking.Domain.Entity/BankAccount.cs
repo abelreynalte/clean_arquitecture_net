@@ -1,16 +1,23 @@
 ﻿using Banking.Application.Exceptions;
 using Banking.Application.Notification;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Banking.Domain.Entity
 {
     public class BankAccount
     {
-        private long id;
-        private string number;
-        private decimal balance;
-        private bool isLocked;
-        private Customer customer;
+        //private long id;
+        //private string number;
+        //private decimal balance;
+        //private bool isLocked;
+        //private Customer customer;
+        [Key]
+        public long id { get; set; }
+        public string number { get; set; }
+        public decimal balance { get; set; }
+        public bool isLocked { get; set; }
+        public Customer customer { get; set; }
 
         public void Lock()
         {
@@ -112,55 +119,55 @@ namespace Banking.Domain.Entity
             return !this.isLocked && (this.balance.CompareTo(amount) >= 0);
         }
 
-        public long getId()
-        {
-            return id;
-        }
+        //public long getId()
+        //{
+        //    return id;
+        //}
 
-        public void setId(long id)
-        {
-            this.id = id;
-        }
+        //public void setId(long id)
+        //{
+        //    this.id = id;
+        //}
 
-        public String getNumber()
-        {
-            return this.number;
-        }
+        //public String getNumber()
+        //{
+        //    return this.number;
+        //}
 
-        public void setNumber(String number)
-        {
-            this.number = number;
-        }
+        //public void setNumber(String number)
+        //{
+        //    this.number = number;
+        //}
 
-        public decimal getBalance()
-        {
-            return this.balance;
-        }
+        //public decimal getBalance()
+        //{
+        //    return this.balance;
+        //}
 
-        public void setBalance(decimal balance)
-        {
-            this.balance = balance;
-        }
+        //public void setBalance(decimal balance)
+        //{
+        //    this.balance = balance;
+        //}
 
-        public bool getIsLocked()
-        {
-            return isLocked;
-        }
+        //public bool getIsLocked()
+        //{
+        //    return isLocked;
+        //}
 
-        public void setIsLocked(bool isLocked)
-        {
-            this.isLocked = isLocked;
-        }
+        //public void setIsLocked(bool isLocked)
+        //{
+        //    this.isLocked = isLocked;
+        //}
 
-        public Customer getCustomer()
-        {
-            return customer;
-        }
+        //public Customer getCustomer()
+        //{
+        //    return customer;
+        //}
 
-        public void setCustomer(Customer customer)
-        {
-            this.customer = customer;
-        }
+        //public void setCustomer(Customer customer)
+        //{
+        //    this.customer = customer;
+        //}
 
     }
 }

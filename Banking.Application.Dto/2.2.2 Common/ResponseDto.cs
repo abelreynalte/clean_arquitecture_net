@@ -8,16 +8,17 @@ namespace Banking.Application.Dto.Common
 {
     public class ResponseDto
     {
-        private Object response;
+        //private Object response;
+        public object response { get; set; }
 
-        public Object getResponse()
-        {
-            return response;
-        }
+        //public Object getResponse()
+        //{
+        //    return response;
+        //}
 
-        public void setResponse(Object response)
-        {
-            this.response = response;
-        }
+        //public void setResponse(Object response)
+        //{
+        //    this.response = response;
+        //}
     }
 }

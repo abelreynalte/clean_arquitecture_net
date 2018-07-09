@@ -19,8 +19,8 @@ namespace Banking.Domain.Service.Test
         private BankAccount createAccount(String number, decimal balance)
         {
             BankAccount bankAccount = new BankAccount();
-            bankAccount.setBalance(balance);
-            bankAccount.setNumber(number);
+            bankAccount.balance= balance;
+            bankAccount.number = number;
             return bankAccount;
         }
 
@@ -33,8 +33,8 @@ namespace Banking.Domain.Service.Test
                 BankAccount destinationBankAccount = createAccount(destinationBankAccountNumber, new decimal(10));
                 transferDomainService.performTransfer(originBankAccount, destinationBankAccount, new decimal(10));
 
-                Assert.AreEqual(new decimal(90), originBankAccount.getBalance());
-                Assert.AreEqual(new decimal(20), destinationBankAccount.getBalance());
+                Assert.AreEqual(new decimal(90), originBankAccount.balance);
+                Assert.AreEqual(new decimal(20), destinationBankAccount.balance);
             }
             catch (Exception)
             {

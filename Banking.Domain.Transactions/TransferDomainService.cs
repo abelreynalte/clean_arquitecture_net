@@ -25,7 +25,7 @@ namespace Banking.Domain.Transactions.Service
             }
             catch (ArgumentException e)
             {
-                //e.Message;
+                throw new ArgumentNullException(e.Message);
             }
             
         }
@@ -58,7 +58,7 @@ namespace Banking.Domain.Transactions.Service
                 notification.addError("Cannot perform the transfer. Invalid data in bank accounts specifications");
                 return;
             }
-            if (originAccount.getNumber().Equals(destinationAccount.getNumber()))
+            if (originAccount.number.Equals(destinationAccount.number))
             {
                 notification.addError("Cannot transfer money to the same bank account");
             }
