@@ -68,6 +68,7 @@ namespace Banking.Api.App_Start
         {
             //kernel.Bind<IBaseRepository<TEntityType>>().To<BaseEFRepository<TInterface>>();//Example of binding a repository to a abstract interface. Replace with your binding
             kernel.Bind<IBankAccountRepository>().To<BankAccountEFRepository>();
+            //kernel.Bind<IBankAccountRepository>().To<BankAccountEFRepository>();
             //kernel.Bind(typeof(IBaseRepository<T>)).To(typeof(BaseEFRepository<T>))();
         }
     }

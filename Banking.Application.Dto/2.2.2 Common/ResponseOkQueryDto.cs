@@ -8,27 +8,7 @@ namespace Banking.Application.Dto.Common
 {
     public class ResponseOkQueryDto<T>
     {
-        private int httpStatus;
-        private List<T> data;
-
-        public int getHttpStatus()
-        {
-            return httpStatus;
-        }
-
-        public void setHttpStatus(int httpStatus)
-        {
-            this.httpStatus = httpStatus;
-        }
-
-        public List<T> getData()
-        {
-            return data;
-        }
-
-        public void setData(List<T> data)
-        {
-            this.data = data;
-        }
+        public int httpStatus { get; set; }
+        public List<T> data { get; set; }
     }
 }

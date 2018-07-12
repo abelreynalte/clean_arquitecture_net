@@ -4,36 +4,69 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Banking.Application.Dto;
+using Banking.Application.Service;
+using Banking.Domain.Repository;
+using Banking.Domain.Entity;
+using System.Collections;
+using System.ComponentModel;
+using System.Linq.Expressions;
+using Banking.Infrastructure.Common;
+using Banking.Domain.Entity.Dtos;
+using Banking.Application.Dto.Pagination;
 
 namespace Banking.Api.Controllers
 {
     public class AccountsController : ApiController
     {
-        // GET: api/Accounts
-        public IEnumerable<string> Get()
+        NoTransactionApplicationService noTransactionApplicationService = new NoTransactionApplicationService();
+        ResponseHandlerController responseHandler = new ResponseHandlerController();
+
+        /*private IMapper mapper;*/
+        private readonly IBankAccountRepository bankAccountRepository;
+        public AccountsController(/*IMapper mapper, */IBankAccountRepository bankAccountRepository)
         {
-            return new string[] { "value1", "value2" };
+            /*this.mapper = mapper;*/
+            this.bankAccountRepository = bankAccountRepository;
         }
 
-        // GET: api/Accounts/5
-        public string Get(int id)
+        [HttpGet]
+        [Route("api/listBankAccount")]
+        public IHttpActionResult listBankAccounts(int page, int pageSize)
         {
-            return "value";
+            try
+            {
+                return Json(GetBankAccounts(page, pageSize));              
+            }
+            catch (ArgumentException ex)
+            {
+                return Json(this.responseHandler.getAppCustomErrorResponse(ex.Message));
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message);
+            }
         }
 
-        // POST: api/Accounts
-        public void Post([FromBody]string value)
+        private BankAccountList GetBankAccounts(int page, int pageSize)
         {
-        }
+            var bankAccounts = this.bankAccountRepository.GetBankAccounts(
+                p => p.isLocked,
+                new string[] { "Customer" }, //new string[] { "Customer" },
+                page,
+                pageSize,
+                new SortExpression<BankAccount>(p => p.customer.lastName, ListSortDirection.Ascending),
+                new SortExpression<BankAccount>(p => p.number, ListSortDirection.Descending));
 
-        // PUT: api/Accounts/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+            var vm = new BankAccountList
+            {
+                BankAccounts = bankAccounts.BankAccouns.ToList(),
+                Page = page,
+                TotalCount = bankAccounts.TotalCount
+            };
 
-        // DELETE: api/Accounts/5
-        public void Delete(int id)
-        {
+            return vm;
+
         }
     }
 }

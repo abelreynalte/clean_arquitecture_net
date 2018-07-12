@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Banking.Domain.Entity.Dtos;
+using System.Linq.Expressions;
 
 namespace Banking.Infrastructure.EntityFramework
 {
@@ -19,30 +21,31 @@ namespace Banking.Infrastructure.EntityFramework
         }   
 
         public BankAccount findByNumber(String accountNumber)
-        {
-            //Criteria criteria = getSession().createCriteria(BankAccount.class);
-            //criteria.add(Restrictions.eq("number", accountNumber));
-            //return (BankAccount) criteria.uniqueResult();
+        {                        
             return BankingContext.BankAccounts.FirstOrDefault(x => x.number == accountNumber);
         }
 
         public BankAccount findByNumberLocked(String accountNumber)
-        {
-            //Criteria criteria = getSession().createCriteria(BankAccount.class);
-            //criteria.add(Restrictions.eq("number", accountNumber));
-            //criteria.setLockMode(LockMode.PESSIMISTIC_WRITE);
-            //return (BankAccount) criteria.uniqueResult();
-
-            //var t = BankingContext.BankAccounts.ToList();
-            
+        {            
             return BankingContext.BankAccounts.FirstOrDefault(x => x.number == accountNumber);
         }
+        
+        public List<BankAccount> listBankAccount(BankAccount bankAccount)
+        {
+            return BankingContext.BankAccounts.ToList();
+        }
 
-        //public void save(BankAccount bankAccount)
-        //{
-        //    //super.save(bankAccount);
-        //    BankingContext.BankAccounts.Add(bankAccount);                        
-        //}
+        public PageOfBankAccountDto GetBankAccounts(Expression<Func<BankAccount, bool>> filter, string [] includePaths, int page, int pageSize, params SortExpression<BankAccount>[] sortExpressions)
+        {
+            IEnumerable<BankAccount> bankAccounts = this.Get(
+                filter,
+                includePaths,
+                page,
+                pageSize,
+                sortExpressions);
+
+            return new PageOfBankAccountDto() { BankAccouns = bankAccounts, TotalCount = pageSize };
+        }
 
         public BankingContext BankingContext
         {

@@ -55,6 +55,7 @@
     <Compile Include="BankingContext.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SortExpression.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

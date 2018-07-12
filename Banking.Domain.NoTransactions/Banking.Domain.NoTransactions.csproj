@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F028AAB1-78F4-4AA3-8040-970B087CF1F4}</ProjectGuid>
+    <ProjectGuid>{9790CB28-CFA1-45F8-9381-6ED8E0587E8C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Banking.Application.Service</RootNamespace>
-    <AssemblyName>Banking.Application.Service</AssemblyName>
+    <RootNamespace>Banking.Domain.NoTransactions</RootNamespace>
+    <AssemblyName>Banking.Domain.NoTransactions</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,15 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NoTransactionApplicationService.cs" />
-    <Compile Include="TransactionApplicationService.cs" />
+    <Compile Include="BankAccountDomainService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Banking.Application.Dto\Banking.Application.Dto.csproj">
-      <Project>{e64c6f58-d57e-419f-8822-59fa093e2059}</Project>
-      <Name>Banking.Application.Dto</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Banking.Domain.Entity\Banking.Domain.Entity.csproj">
       <Project>{a6eff12b-49c8-4002-86ff-ea0403f311e3}</Project>
       <Name>Banking.Domain.Entity</Name>
@@ -56,18 +51,6 @@
     <ProjectReference Include="..\Banking.Domain.Notification\Banking.Application.Notification.csproj">
       <Project>{34b76d86-6ed0-47c8-8c38-a14fdd7f639c}</Project>
       <Name>Banking.Application.Notification</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Banking.Domain.NoTransactions\Banking.Domain.NoTransactions.csproj">
-      <Project>{9790cb28-cfa1-45f8-9381-6ed8e0587e8c}</Project>
-      <Name>Banking.Domain.NoTransactions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Banking.Domain.Repository\Banking.Domain.Repository.csproj">
-      <Project>{95c930f0-e56f-45c1-baf7-becbca0313ae}</Project>
-      <Name>Banking.Domain.Repository</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Banking.Domain.Transactions\Banking.Domain.Transactions.csproj">
-      <Project>{d15af4ca-03d6-401a-a621-fe1c642a7410}</Project>
-      <Name>Banking.Domain.Transactions</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

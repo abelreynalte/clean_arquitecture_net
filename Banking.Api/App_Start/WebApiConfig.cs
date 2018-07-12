@@ -7,7 +7,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Http;
 using System.Web.UI;
-using Unity;
 
 namespace Banking.Api
 {

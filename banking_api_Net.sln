@@ -53,6 +53,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banking.Infrastructure.Comm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banking.Infrastructure.EntityFramework", "Banking.Infrastructure.EntityFramework\Banking.Infrastructure.EntityFramework.csproj", "{6E186527-C45F-4923-801F-24ED8E310B1B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banking.Domain.NoTransactions", "Banking.Domain.NoTransactions\Banking.Domain.NoTransactions.csproj", "{9790CB28-CFA1-45F8-9381-6ED8E0587E8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -103,6 +105,10 @@ Global
 		{6E186527-C45F-4923-801F-24ED8E310B1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E186527-C45F-4923-801F-24ED8E310B1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E186527-C45F-4923-801F-24ED8E310B1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9790CB28-CFA1-45F8-9381-6ED8E0587E8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9790CB28-CFA1-45F8-9381-6ED8E0587E8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9790CB28-CFA1-45F8-9381-6ED8E0587E8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9790CB28-CFA1-45F8-9381-6ED8E0587E8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -128,5 +134,6 @@ Global
 		{4A364DA8-FD69-4073-98AC-B62A1CF09270} = {E10463BF-69C3-4F96-BC74-E092BEA3AA24}
 		{6F6562DA-F7D1-427E-9437-978AE4DFF332} = {3251B9D8-51DD-4C41-BA5A-073362A83C5E}
 		{6E186527-C45F-4923-801F-24ED8E310B1B} = {4A364DA8-FD69-4073-98AC-B62A1CF09270}
+		{9790CB28-CFA1-45F8-9381-6ED8E0587E8C} = {626C3891-021F-4CF3-AFAD-355CA6ED7F9D}
 	EndGlobalSection
 EndGlobal

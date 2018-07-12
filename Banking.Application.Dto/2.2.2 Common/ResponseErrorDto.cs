@@ -8,8 +8,6 @@ namespace Banking.Application.Dto.Common
 {
     public class ResponseErrorDto
     {
-        //private int httpStatus;
-        //private List<ErrorDto> errors;
         public int httpStatus { get; set; }
         public List<ErrorDto> errors { get; set; }
 
@@ -21,25 +19,5 @@ namespace Banking.Application.Dto.Common
         {
             this.errors = errors;
         }
-
-        //public int getHttpStatus()
-        //{
-        //    return httpStatus;
-        //}
-
-        //public void setHttpStatus(int httpStatus)
-        //{
-        //    this.httpStatus = httpStatus;
-        //}
-
-        //public List<ErrorDto> getErrors()
-        //{
-        //    return errors;
-        //}
-
-        //public void setErrors(List<ErrorDto> errors)
-        //{
-        //    this.errors = errors;
-        //}
     }
 }

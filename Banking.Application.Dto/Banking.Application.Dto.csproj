@@ -47,10 +47,17 @@
     <Compile Include="2.2.2 Common\ResponseErrorDto.cs" />
     <Compile Include="2.2.2 Common\ResponseOkCommandDto.cs" />
     <Compile Include="2.2.2 Common\ResponseOkQueryDto.cs" />
+    <Compile Include="2.2.3 Pagination\BankAccountList.cs" />
     <Compile Include="BankAccountDto.cs" />
     <Compile Include="CustomerDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestBankTransferDto.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Banking.Domain.Entity\Banking.Domain.Entity.csproj">
+      <Project>{a6eff12b-49c8-4002-86ff-ea0403f311e3}</Project>
+      <Name>Banking.Domain.Entity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -3,6 +3,7 @@ using Banking.Application.Dto.Enumeration;
 using Banking.Domain.Entity;
 using Banking.Domain.Repository;
 using Banking.Domain.Transactions.Service;
+using Banking.Domain.Transactions;
 //using Banking.Application.Notification;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Banking.Application.Service
     {
         private TransferDomainService transferDomainService = new TransferDomainService();        
 
-        public void performTransfer(Dto.RequestBankTransferDto requestBankTransferDto, 
+        public void performTransfer(RequestBankTransferDto requestBankTransferDto, 
             Func<string, BankAccount> delagatefindByNumberLocked, Action<BankAccount> delegateUpdate)
         {
             Notification.Notification notification = this.validation(requestBankTransferDto);
@@ -29,9 +30,9 @@ namespace Banking.Application.Service
             this.transferDomainService.performTransfer(originAccount, destinationAccount, requestBankTransferDto.amount);
             delegateUpdate(originAccount);
             delegateUpdate(destinationAccount);
-        }
+        }        
 
-        private Notification.Notification validation(Dto.RequestBankTransferDto requestBankTransferDto)
+        private Notification.Notification validation(RequestBankTransferDto requestBankTransferDto)
         {
             Notification.Notification notification = new Notification.Notification();
             if (requestBankTransferDto == null || requestBankTransferDto.getRequestBodyType() == RequestBodyType.INVALID)

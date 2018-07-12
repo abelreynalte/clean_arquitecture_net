@@ -23,5 +23,11 @@ CREATE TABLE [dbo].[BankAccount] (
 GO
 
 insert into Customer(firstName, lastName) values('Juan', 'Perez')
+insert into Customer(firstName, lastName) values('Rafael', 'Bravo')
+insert into Customer(firstName, lastName) values('Rufino', 'Alcantara')
+insert into Customer(firstName, lastName) values('Jose', 'Morales')
 insert into BankAccount(number, balance, isLocked, customer_id) values('123-456-001','1160.00',0,1)
 insert into BankAccount(number, balance, isLocked, customer_id) values('123-456-002','2140.00',0,1)
+insert into BankAccount(number, balance, isLocked, customer_id) values('123-456-003','2140.00',0,2)
+insert into BankAccount(number, balance, isLocked, customer_id) values('123-456-004','2140.00',0,3)
+insert into BankAccount(number, balance, isLocked, customer_id) values('123-456-005','2140.00',0,4)

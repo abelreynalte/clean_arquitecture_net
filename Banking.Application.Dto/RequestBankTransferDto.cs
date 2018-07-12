@@ -10,9 +10,6 @@ namespace Banking.Application.Dto
 {
     public class RequestBankTransferDto: RequestBaseDto
     {
-        ////private String fromAccountNumber;
-        ////private String toAccountNumber;
-        ////private decimal amount;
         public String fromAccountNumber { get; set; }
         public String toAccountNumber { get; set; }
         public decimal amount { get; set; }
@@ -27,36 +24,6 @@ namespace Banking.Application.Dto
             this.toAccountNumber = toAccountNumber;
             this.amount = amount;
             this.requestBodyType = requestBodyType;
-        }
-
-        //public String getFromAccountNumber()
-        //{
-        //    return fromAccountNumber;
-        //}
-
-        //public void setFromAccountNumber(String fromAccountNumber)
-        //{
-        //    this.fromAccountNumber = fromAccountNumber;
-        //}
-
-        //public String getToAccountNumber()
-        //{
-        //    return toAccountNumber;
-        //}
-
-        //public void setToAccountNumber(String toAccountNumber)
-        //{
-        //    this.toAccountNumber = toAccountNumber;
-        //}
-
-        //public decimal getAmount()
-        //{
-        //    return amount;
-        //}
-
-        //public void setAmount(decimal amount)
-        //{
-        //    this.amount = amount;
-        //}
+        }        
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Banking.Domain.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,60 +9,10 @@ namespace Banking.Application.Dto
 {
     public class BankAccountDto
     {
-        private long id;
-        private String number;
-        private decimal balance;
-        private bool isLocked;
-        private CustomerDto customer;
-
-        public long getId()
-        {
-            return id;
-        }
-
-        public void setId(long id)
-        {
-            this.id = id;
-        }
-
-        public String getNumber()
-        {
-            return number;
-        }
-
-        public void setNumber(String number)
-        {
-            this.number = number;
-        }
-
-        public decimal getBalance()
-        {
-            return balance;
-        }
-
-        public void setBalance(decimal balance)
-        {
-            this.balance = balance;
-        }
-
-        public bool _isLocked()
-        {
-            return isLocked;
-        }
-
-        public void setLocked(bool isLocked)
-        {
-            this.isLocked = isLocked;
-        }
-
-        public CustomerDto getCustomer()
-        {
-            return customer;
-        }
-
-        public void setCustomer(CustomerDto customer)
-        {
-            this.customer = customer;
-        }
+        public long id { get; set; }
+        public string number { get; set; }
+        public decimal balance { get; set; }
+        public bool isLocked { get; set; }
+        public CustomerDto customer { get; set; }  
     }
 }
