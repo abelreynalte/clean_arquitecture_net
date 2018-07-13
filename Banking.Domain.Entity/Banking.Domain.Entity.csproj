@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="BankAccount.cs" />
     <Compile Include="Customer.cs" />
+    <Compile Include="Dtos\PageOfCustomerDto.cs" />
     <Compile Include="Dtos\PageOfBankAccountDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

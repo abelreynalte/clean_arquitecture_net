@@ -48,6 +48,7 @@
     <Compile Include="2.2.2 Common\ResponseOkCommandDto.cs" />
     <Compile Include="2.2.2 Common\ResponseOkQueryDto.cs" />
     <Compile Include="2.2.3 Pagination\BankAccountList.cs" />
+    <Compile Include="2.2.3 Pagination\CustomerList.cs" />
     <Compile Include="BankAccountDto.cs" />
     <Compile Include="CustomerDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

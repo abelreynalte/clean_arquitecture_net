@@ -9,6 +9,7 @@ namespace Banking.Domain.Entity
         public long id { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
+        //public BankAccount bankAccount { get; set; }
 
         public string getFullName()
         {

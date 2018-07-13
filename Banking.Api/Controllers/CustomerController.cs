@@ -1,5 +1,10 @@
-﻿using System;
+﻿using Banking.Application.Dto.Pagination;
+using Banking.Domain.Entity;
+using Banking.Domain.Repository;
+using Banking.Infrastructure.Common;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -9,31 +14,51 @@ namespace Banking.Api.Controllers
 {
     public class CustomerController : ApiController
     {
-        // GET: api/Customer
-        public IEnumerable<string> Get()
+        ResponseHandlerController responseHandler = new ResponseHandlerController();
+        private readonly ICustomerRepository customerRepository;
+        public CustomerController(/*IMapper mapper, */ICustomerRepository customerRepository)
         {
-            return new string[] { "value1", "value2" };
+            /*this.mapper = mapper;*/
+            this.customerRepository = customerRepository;
         }
 
-        // GET: api/Customer/5
-        public string Get(int id)
+        [HttpGet]
+        [Route("api/listCustomer")]
+        public IHttpActionResult listCustomer(int page, int pageSize)
         {
-            return "value";
+            try
+            {
+                return Json(GetCustomers(page, pageSize));
+            }
+            catch (ArgumentException ex)
+            {
+                return Json(this.responseHandler.getAppCustomErrorResponse(ex.Message));
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message);
+            }
         }
 
-        // POST: api/Customer
-        public void Post([FromBody]string value)
+        private CustomerList GetCustomers(int page, int pageSize)
         {
-        }
+            var bankAccounts = this.customerRepository.GetCustomers(
+                null,
+                new string[] { }, //new string[] { "Customer" },
+                page,
+                pageSize,
+                new SortExpression<Customer>(p => p.lastName, ListSortDirection.Ascending),
+                new SortExpression<Customer>(p => p.firstName, ListSortDirection.Descending));
 
-        // PUT: api/Customer/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+            var vm = new CustomerList
+            {
+                Customers = bankAccounts.Customers.ToList(),
+                Page = page,
+                TotalCount = bankAccounts.TotalCount
+            };
 
-        // DELETE: api/Customer/5
-        public void Delete(int id)
-        {
+            return vm;
+
         }
     }
 }
