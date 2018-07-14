@@ -1,4 +1,5 @@
-﻿using Banking.Domain.Entity;
+﻿using Banking.Api.Controllers;
+using Banking.Domain.Entity;
 using Banking.Domain.Repository;
 using Banking.Infrastructure.EntityFramework;
 using System;
@@ -24,7 +25,7 @@ namespace Banking.Api
 
             // Rutas de API web
             config.MapHttpAttributeRoutes();
-
+            config.MessageHandlers.Add(new TokenValidationHandler()); //json web token
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",

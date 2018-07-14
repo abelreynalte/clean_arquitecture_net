@@ -12,6 +12,8 @@ using System.Web.Http;
 
 namespace Banking.Api.Controllers
 {
+    [Authorize]
+    [RoutePrefix("api/customer")]
     public class CustomerController : ApiController
     {
         ResponseHandlerController responseHandler = new ResponseHandlerController();
@@ -23,7 +25,21 @@ namespace Banking.Api.Controllers
         }
 
         [HttpGet]
-        [Route("api/listCustomer")]
+        public IHttpActionResult GetId(int id)
+        {
+            var customerFake = "customer-fake";
+            return Ok(customerFake);
+        }
+
+        [HttpGet]
+        [Route("getAll")]
+        public IHttpActionResult GetAll()
+        {
+            var customersFake = new string[] { "customer-1", "customer-2", "customer-3" };
+            return Ok(customersFake);
+        }
+
+        [HttpGet]
         public IHttpActionResult listCustomer(int page, int pageSize)
         {
             try

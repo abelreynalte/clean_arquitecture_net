@@ -51,7 +51,7 @@ namespace Banking.Api.Controllers
         private BankAccountList GetBankAccounts(int page, int pageSize)
         {
             var bankAccounts = this.bankAccountRepository.GetBankAccounts(
-                p => p.isLocked,
+                p => !p.isLocked,
                 new string[] { "Customer" }, //new string[] { "Customer" },
                 page,
                 pageSize,
